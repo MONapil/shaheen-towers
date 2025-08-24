@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أبراج شاهين - الإسكندرية | مشروع عقاري راقي</title>
+    <title>أبراج شاهين - الإسكندرية | مشروع عقاري مستقبلي</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             font-family: 'Cairo', sans-serif;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         :root {
@@ -21,241 +21,340 @@
             --text-secondary: #6b7280;
             --text-muted: #9ca3af;
             --border-color: #e5e7eb;
-            --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            --hero-gradient: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #60a5fa 100%);
+            --shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            --hero-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --accent-gradient: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #f9ca24);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
         }
 
         [data-theme="dark"] {
-            --primary-bg: #0f172a;
-            --secondary-bg: #1e293b;
-            --card-bg: #334155;
-            --text-primary: #f1f5f9;
-            --text-secondary: #cbd5e1;
-            --text-muted: #94a3b8;
-            --border-color: #475569;
-            --shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-            --hero-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            --primary-bg: #0a0a0a;
+            --secondary-bg: #111111;
+            --card-bg: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #e5e7eb;
+            --text-muted: #9ca3af;
+            --border-color: #333333;
+            --shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
+            --hero-gradient: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            --glass-bg: rgba(0, 0, 0, 0.3);
+            --glass-border: rgba(255, 255, 255, 0.1);
         }
 
         body {
-            background-color: var(--primary-bg);
+            background: var(--primary-bg);
             color: var(--text-primary);
+            overflow-x: hidden;
         }
-        
+
+        /* Loading Animation */
+        .loading-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .loading-animation.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loading-spinner {
+            width: 80px;
+            height: 80px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid #fbbf24;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            position: relative;
+        }
+
+        .loading-spinner::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 60px;
+            height: 60px;
+            margin: -30px 0 0 -30px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-top: 2px solid #60a5fa;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite reverse;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Hide content initially */
+        .main-content {
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+
+        .main-content.loaded {
+            opacity: 1;
+        }
+
+        /* Futuristic Background Animation */
+        .stars-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.3) 0%, transparent 50%);
+            animation: starsMove 20s ease-in-out infinite;
+        }
+
+        @keyframes starsMove {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(1deg); }
+        }
+
+        /* Hero Section */
         .hero-bg {
             background: var(--hero-gradient);
-        }
-        
-        .animate-fadeInUp {
-            animation: fadeInUp 1s ease-out forwards;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        
-        .animate-fadeInLeft {
-            animation: fadeInLeft 1s ease-out forwards;
-            opacity: 0;
-            transform: translateX(-30px);
-        }
-        
-        .animate-fadeInRight {
-            animation: fadeInRight 1s ease-out forwards;
-            opacity: 0;
-            transform: translateX(30px);
-        }
-        
-        .animate-float {
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        .animate-pulse-slow {
-            animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-
-        .animate-glow {
-            animation: glow 2s ease-in-out infinite alternate;
-        }
-
-        .animate-scale-pulse {
-            animation: scalePulse 2s ease-in-out infinite;
-        }
-
-        .animate-slide-up {
-            animation: slideUp 0.8s ease-out forwards;
-            opacity: 0;
-            transform: translateY(50px);
-        }
-        
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes fadeInLeft {
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        @keyframes fadeInRight {
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-
-        @keyframes glow {
-            from {
-                box-shadow: 0 0 20px rgba(251, 191, 36, 0.4);
-            }
-            to {
-                box-shadow: 0 0 30px rgba(251, 191, 36, 0.8), 0 0 40px rgba(251, 191, 36, 0.3);
-            }
-        }
-
-        @keyframes scalePulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        @keyframes slideUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .glass-effect {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        [data-theme="dark"] .glass-effect {
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .gradient-text {
-            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        [data-theme="dark"] .gradient-text {
-            background: linear-gradient(135deg, #60a5fa, #3b82f6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .card-hover {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-        }
-        
-        .card-hover:hover {
-            transform: translateY(-15px) rotateX(5deg);
-            box-shadow: var(--shadow);
-        }
-        
-        .booking-form {
-            background: var(--secondary-bg);
-        }
-        
-        .contact-gradient {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-        }
-
-        [data-theme="dark"] .contact-gradient {
-            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
-        }
-
-        .ceo-section {
-            background: linear-gradient(135deg, var(--secondary-bg) 0%, var(--primary-bg) 100%);
-        }
-
-        .ceo-card {
-            background: var(--card-bg);
-            border: 2px solid transparent;
-            background-clip: padding-box;
             position: relative;
             overflow: hidden;
         }
 
-        .ceo-card::before {
+        .hero-bg::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #f9ca24);
-            background-size: 400% 400%;
-            animation: rainbow-border 3s ease infinite;
-            z-index: -1;
-            margin: -2px;
-            border-radius: inherit;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            animation: grain 3s linear infinite;
         }
 
-        @keyframes rainbow-border {
+        @keyframes grain {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-2px, -2px); }
+        }
+
+        /* Advanced Animations */
+        .animate-float-gentle {
+            animation: floatGentle 4s ease-in-out infinite;
+        }
+
+        .animate-rotate-slow {
+            animation: rotateSlow 20s linear infinite;
+        }
+
+        .animate-pulse-glow {
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+
+        .animate-slide-in-left {
+            animation: slideInLeft 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            opacity: 0;
+            transform: translateX(-100px);
+        }
+
+        .animate-slide-in-right {
+            animation: slideInRight 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            opacity: 0;
+            transform: translateX(100px);
+        }
+
+        .animate-bounce-in {
+            animation: bounceIn 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+            opacity: 0;
+            transform: scale(0.3);
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 1s ease-out forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        @keyframes floatGentle {
+            0%, 100% { transform: translateY(0px) rotateY(0deg); }
+            50% { transform: translateY(-15px) rotateY(5deg); }
+        }
+
+        @keyframes rotateSlow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% {
+                box-shadow: 0 0 30px rgba(251, 191, 36, 0.4);
+                transform: scale(1);
+            }
+            50% {
+                box-shadow: 0 0 50px rgba(251, 191, 36, 0.8), 0 0 80px rgba(251, 191, 36, 0.3);
+                transform: scale(1.02);
+            }
+        }
+
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes bounceIn {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Glass Morphism Effects */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .neo-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .neo-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .neo-card:hover::before {
+            left: 100%;
+        }
+
+        /* Gradient Text Effects */
+        .gradient-text-futuristic {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #f9ca24, #ff6b6b);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 4s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
             0%, 100% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
         }
 
-        .ceo-avatar {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            animation: avatarGlow 3s ease-in-out infinite;
+        /* 3D Button Effects */
+        .btn-3d {
+            position: relative;
+            transform-style: preserve-3d;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        @keyframes avatarGlow {
-            0%, 100% {
-                box-shadow: 0 0 20px rgba(102, 126, 234, 0.4);
-                transform: scale(1);
-            }
-            50% {
-                box-shadow: 0 0 40px rgba(102, 126, 234, 0.8);
-                transform: scale(1.05);
-            }
+        .btn-3d:hover {
+            transform: translateY(-5px) rotateX(15deg);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
         }
 
+        /* Holographic Effects */
+        .holographic {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #f9ca24);
+            background-size: 400% 400%;
+            animation: holographic 3s ease-in-out infinite;
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .holographic::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: inherit;
+            border-radius: inherit;
+            filter: blur(10px);
+            z-index: -1;
+            animation: holographic 3s ease-in-out infinite reverse;
+        }
+
+        @keyframes holographic {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Dark Mode Toggle */
         .theme-toggle {
             position: fixed;
             top: 100px;
             right: 20px;
             z-index: 1000;
-            background: var(--card-bg);
-            border: 2px solid var(--border-color);
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
             border-radius: 50px;
-            padding: 10px 15px;
+            padding: 12px 18px;
             box-shadow: var(--shadow);
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .theme-toggle:hover {
-            transform: scale(1.1);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transform: scale(1.15) rotate(5deg);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
         }
 
         .theme-icon {
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
+            font-size: 1.8rem;
+            transition: all 0.4s ease;
         }
 
         [data-theme="light"] .sun-icon {
             color: #f59e0b;
             transform: rotate(0deg);
+            filter: drop-shadow(0 0 10px #f59e0b);
         }
 
         [data-theme="light"] .moon-icon {
@@ -265,29 +364,129 @@
         [data-theme="dark"] .moon-icon {
             color: #60a5fa;
             transform: rotate(0deg);
+            filter: drop-shadow(0 0 10px #60a5fa);
         }
 
         [data-theme="dark"] .sun-icon {
             display: none;
         }
 
+        /* Advanced Card Hover Effects */
+        .futuristic-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .futuristic-card:hover {
+            transform: translateY(-20px) rotateX(10deg) rotateY(5deg);
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.2),
+                0 0 50px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Holographic CEO Avatar */
+        .ceo-avatar-holographic {
+            width: 150px;
+            height: 150px;
+            background: var(--accent-gradient);
+            background-size: 400% 400%;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            position: relative;
+            animation: holographic 4s ease-in-out infinite, floatGentle 3s ease-in-out infinite;
+            box-shadow: 
+                0 0 50px rgba(102, 126, 234, 0.5),
+                inset 0 0 50px rgba(255, 255, 255, 0.1);
+        }
+
+        .ceo-avatar-holographic::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: inherit;
+            border-radius: inherit;
+            filter: blur(15px);
+            z-index: -1;
+            animation: holographic 4s ease-in-out infinite reverse;
+        }
+
+        /* Advanced Typography */
+        .futuristic-title {
+            font-family: 'Orbitron', 'Cairo', sans-serif;
+            background: var(--accent-gradient);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Interactive Elements */
+        .interactive-element {
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .interactive-element:hover {
+            transform: scale(1.05) translateY(-5px);
+            filter: brightness(1.1);
+        }
+
+        /* Form Futuristic Styling */
+        .futuristic-input {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 16px 20px;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .futuristic-input:focus {
+            outline: none;
+            border-color: #60a5fa;
+            box-shadow: 
+                0 0 20px rgba(96, 165, 250, 0.3),
+                inset 0 0 20px rgba(96, 165, 250, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .futuristic-input::placeholder {
+            color: var(--text-muted);
+            opacity: 0.7;
+        }
+
+        /* Modal Styles */
         .modal {
             display: none;
             position: fixed;
-            z-index: 1000;
+            z-index: 10000;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.7);
-            backdrop-filter: blur(5px);
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
         }
 
         .modal.show {
             display: flex;
             align-items: center;
             justify-content: center;
-            animation: modalShow 0.3s ease-out;
+            animation: modalShow 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         @keyframes modalShow {
@@ -297,15 +496,17 @@
 
         .modal-content {
             background: var(--card-bg);
-            border-radius: 20px;
-            padding: 2rem;
+            border-radius: 25px;
+            padding: 2.5rem;
             text-align: center;
-            box-shadow: var(--shadow);
-            max-width: 500px;
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.3),
+                0 0 100px rgba(102, 126, 234, 0.2);
+            max-width: 600px;
             margin: 20px;
             position: relative;
-            animation: modalSlideIn 0.4s ease-out;
-            border: 1px solid var(--border-color);
+            animation: modalSlideIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border: 2px solid var(--border-color);
         }
 
         @keyframes modalSlideIn {
@@ -340,609 +541,835 @@
             animation: bounce 1s infinite;
         }
 
-        .special-success-icon {
-            font-size: 5rem;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: rainbow 2s ease-in-out infinite, bounce 1s infinite;
-        }
-
-        @keyframes rainbow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
             40% { transform: translateY(-10px); }
             60% { transform: translateY(-5px); }
         }
 
+        /* Responsive Design */
         @media (max-width: 768px) {
             .theme-toggle {
                 top: 80px;
-                right: 10px;
-                padding: 8px 12px;
+                right: 15px;
+                padding: 10px 14px;
+            }
+
+            .futuristic-title {
+                font-size: 2.5rem;
+            }
+
+            .ceo-avatar-holographic {
+                width: 120px;
+                height: 120px;
             }
         }
     </style>
 </head>
-<body class="overflow-x-hidden" data-theme="light">
-
-    <!-- Dark Mode Toggle -->
-    <div class="theme-toggle" onclick="toggleTheme()">
-        <i class="fas fa-sun theme-icon sun-icon"></i>
-        <i class="fas fa-moon theme-icon moon-icon"></i>
-    </div>
-
-    <!-- Success Modal -->
-    <div id="successModal" class="modal" aria-hidden="true">
-        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="successTitle">
-            <span class="close-btn" onclick="closeModal()" aria-label="Close">&times;</span>
-            <div id="successIcon" class="success-icon"><i class="fas fa-check-circle"></i></div>
-            <h2 id="successTitle" class="text-2xl font-bold mb-4" style="color: var(--text-primary);">تم إرسال الطلب بنجاح!</h2>
-            <p id="successMessage" class="mb-6" style="color: var(--text-secondary);">انتظر مكالمة من أفضل رجال الأعمال</p>
-            <div id="specialImage" style="display: none;">
-                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c8ab3b6d-9a1a-42f1-bb57-684c60c3f468.png" alt="صورة احتفالية" class="mx-auto rounded-full mb-4 border-4 border-yellow-400 shadow-lg">
-                <p class="text-lg font-bold text-yellow-600">🎉 مرحباً بك في العائلة المميزة! 🎉</p>
-            </div>
-            <button type="button" onclick="closeModal()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full">
-                حسناً
-            </button>
+<body data-theme="light">
+    <!-- Loading Animation -->
+    <div id="loadingAnimation" class="loading-animation">
+        <div class="text-center">
+            <div class="loading-spinner"></div>
+            <h2 class="text-white text-3xl font-bold mt-6 animate-pulse">أبراج شاهين</h2>
+            <p class="text-blue-200 mt-2 text-lg">جاري تحميل المستقبل...</p>
         </div>
     </div>
 
-    <!-- Header -->
-    <header class="fixed top-0 w-full z-50 glass-effect">
-        <nav class="container mx-auto px-4 py-4">
-            <div class="flex items-center justify-between">
-                <div class="text-2xl font-bold text-white animate-scale-pulse">
-                    <i class="fas fa-building text-yellow-400 ml-2"></i>
-                    أبراج شاهين
+    <!-- Main Content -->
+    <div id="mainContent" class="main-content">
+        <!-- Stars Background -->
+        <div class="stars-bg"></div>
+
+        <!-- Dark Mode Toggle -->
+        <div class="theme-toggle interactive-element" onclick="toggleTheme()">
+            <i class="fas fa-sun theme-icon sun-icon"></i>
+            <i class="fas fa-moon theme-icon moon-icon"></i>
+        </div>
+
+        <!-- Success Modal -->
+        <div id="successModal" class="modal">
+            <div class="modal-content neo-card">
+                <span class="close-btn" onclick="closeModal()">&times;</span>
+                <div id="successIcon" class="success-icon">
+                    <i class="fas fa-check-circle"></i>
                 </div>
-                <div class="hidden md:flex space-x-reverse space-x-8">
-                    <a href="#home" class="text-white hover:text-yellow-400 transition-all duration-300 hover:scale-110">الرئيسية</a>
-                    <a href="#about" class="text-white hover:text-yellow-400 transition-all duration-300 hover:scale-110">عن المشروع</a>
-                    <a href="#ceo" class="text-white hover:text-yellow-400 transition-all duration-300 hover:scale-110">القيادة</a>
-                    <a href="#units" class="text-white hover:text-yellow-400 transition-all duration-300 hover:scale-110">الوحدات</a>
-                    <a href="#booking" class="text-white hover:text-yellow-400 transition-all duration-300 hover:scale-110">احجز وحدتك</a>
-                    <a href="#contact" class="text-white hover:text-yellow-400 transition-all duration-300 hover:scale-110">تواصل معنا</a>
+                <h2 id="successTitle" class="text-3xl font-bold mb-4 futuristic-title">تم إرسال الطلب بنجاح!</h2>
+                <p id="successMessage" class="text-lg mb-6" style="color: var(--text-secondary);">انتظر مكالمة من أفضل رجال الأعمال</p>
+                <div id="specialImage" style="display: none;">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/7567182f-b0d5-4965-bac9-f87072a25ba7.png" alt="صورة احتفالية خاصة مع كعكة وشموع ملونة وبالونات للاحتفال بالتسجيل الناجح مع رسالة ترحيب" class="mx-auto rounded-full mb-4 border-4 border-yellow-400 shadow-lg animate-bounce-in">
+                    <p class="text-xl font-bold gradient-text-futuristic">مرحباً بك في العائلة المميزة!</p>
                 </div>
-                <button class="md:hidden text-white">
-                    <i class="fas fa-bars text-xl"></i>
+                <button type="button" onclick="closeModal()" class="btn-3d bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold py-3 px-8 rounded-full transition-all duration-300">
+                    <i class="fas fa-rocket ml-2"></i>
+                    حسناً
                 </button>
             </div>
-        </nav>
-    </header>
+        </div>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero-bg min-h-screen flex items-center justify-center relative">
-        <div class="absolute inset-0 bg-black bg-opacity-30"></div>
-        <div class="container mx-auto px-4 text-center text-white relative z-10">
-            <h1 class="text-5xl md:text-7xl font-bold mb-6 animate-fadeInUp">
-                أبراج شاهين
-            </h1>
-            <p class="text-xl md:text-2xl mb-6 animate-fadeInUp" style="animation-delay: 0.2s;">
-                مشروع عقاري راقي في قلب الإسكندرية
-            </p>
-            <p class="text-lg md:text-xl mb-8 animate-fadeInUp max-w-2xl mx-auto" style="animation-delay: 0.4s;">
-                اكتشف أرقى الوحدات السكنية والتجارية بتصميم معماري حديث وخدمات متكاملة
-            </p>
+        <!-- Header -->
+        <header class="fixed top-0 w-full z-50 glass-card">
+            <nav class="container mx-auto px-4 py-4">
+                <div class="flex items-center justify-between">
+                    <div class="text-3xl font-bold text-white animate-pulse-glow">
+                        <i class="fas fa-building text-yellow-400 ml-2 animate-rotate-slow"></i>
+                        <span class="futuristic-title">أبراج شاهين</span>
+                    </div>
+                    <div class="hidden md:flex space-x-reverse space-x-8">
+                        <a href="#home" class="text-white hover:text-yellow-400 transition-all duration-300 hover:scale-110 interactive-element">الرئيسية</a>
+                        <a href="#about" class="text-white hover:text-yellow-400 transition-all duration-300 hover:scale-110 interactive-element">عن المشروع</a>
+                        <a href="#ceo" class="text-white hover:text-yellow-400 transition-all duration-300 hover:scale-110 interactive-element">القيادة</a>
+                        <a href="#units" class="text-white hover:text-yellow-400 transition-all duration-300 hover:scale-110 interactive-element">الوحدات</a>
+                        <a href="#booking" class="text-white hover:text-yellow-400 transition-all duration-300 hover:scale-110 interactive-element">احجز وحدتك</a>
+                        <a href="#contact" class="text-white hover:text-yellow-400 transition-all duration-300 hover:scale-110 interactive-element">تواصل معنا</a>
+                    </div>
+                    <button class="md:hidden text-white interactive-element">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <section id="home" class="hero-bg min-h-screen flex items-center justify-center relative">
+            <div class="absolute inset-0 bg-gradient-to-br from-black/40 via-transparent to-black/40"></div>
+            <div class="container mx-auto px-4 text-center text-white relative z-10">
+                <h1 class="text-6xl md:text-8xl font-bold mb-8 animate-slide-in-left futuristic-title">
+                    أبراج شاهين
+                </h1>
+                <p class="text-2xl md:text-3xl mb-8 animate-slide-in-right" style="animation-delay: 0.5s;">
+                    مشروع عقاري مستقبلي في قلب الإسكندرية
+                </p>
+                <p class="text-xl md:text-2xl mb-12 animate-bounce-in max-w-3xl mx-auto" style="animation-delay: 1s;">
+                    اكتشف أرقى الوحدات السكنية والتجارية بتكنولوجيا المستقبل
+                </p>
+                
+                <!-- CEO Section in Hero -->
+                <div class="glass-card rounded-3xl p-10 mb-12 max-w-3xl mx-auto animate-bounce-in animate-pulse-glow" style="animation-delay: 1.5s;">
+                    <h3 class="text-3xl font-bold mb-8 gradient-text-futuristic">بقيادة رجل الأعمال الرقمي</h3>
+                    <div class="flex flex-col items-center">
+                        <div class="ceo-avatar-holographic mb-6">
+                            <i class="fas fa-crown text-white text-4xl"></i>
+                        </div>
+                        <h4 class="font-bold text-3xl mb-3 text-white futuristic-title">محمد نبيل حسنين</h4>
+                        <p class="text-xl text-yellow-300 mb-6">المدير التنفيذي والمؤسس</p>
+                        <div class="grid md:grid-cols-3 gap-4 w-full">
+                            <div class="glass-card p-4 rounded-xl animate-float-gentle">
+                                <i class="fas fa-star text-yellow-400 text-2xl mb-2"></i>
+                                <p class="text-sm text-yellow-200">خبرة 15+ سنة</p>
+                            </div>
+                            <div class="glass-card p-4 rounded-xl animate-float-gentle" style="animation-delay: 0.5s;">
+                                <i class="fas fa-rocket text-blue-400 text-2xl mb-2"></i>
+                                <p class="text-sm text-blue-200">تكنولوجيا متقدمة</p>
+                            </div>
+                            <div class="glass-card p-4 rounded-xl animate-float-gentle" style="animation-delay: 1s;">
+                                <i class="fas fa-award text-purple-400 text-2xl mb-2"></i>
+                                <p class="text-sm text-purple-200">رائد في المجال</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="animate-bounce-in" style="animation-delay: 2s;">
+                    <a href="#booking" class="btn-3d bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-blue-900 font-bold py-5 px-10 rounded-full text-xl shadow-2xl hover:shadow-yellow-400/25">
+                        <i class="fas fa-rocket mr-3"></i>
+                        احجز مستقبلك الآن
+                    </a>
+                </div>
+            </div>
             
-            <!-- CEO Section in Hero -->
-            <div class="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-2xl p-8 mb-12 max-w-2xl mx-auto animate-fadeInUp animate-glow" style="animation-delay: 0.5s;">
-                <h3 class="text-2xl font-bold mb-6 text-yellow-400">بقيادة رجل الأعمال المتميز</h3>
-                <div class="flex flex-col items-center">
-                    <div class="w-24 h-24 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center mb-4 animate-scale-pulse">
-                        <i class="fas fa-crown text-blue-900 text-3xl"></i>
-                    </div>
-                    <h4 class="font-bold text-2xl mb-2 text-white">محمد نبيل حسنين</h4>
-                    <p class="text-lg text-yellow-200 mb-4">المدير التنفيذي والمؤسس</p>
-                    <div class="flex space-x-reverse space-x-4">
-                        <span class="bg-yellow-400 bg-opacity-20 text-yellow-200 px-4 py-2 rounded-full text-sm">
-                            <i class="fas fa-star ml-1"></i>
-                            خبرة 15+ سنة
-                        </span>
-                        <span class="bg-blue-400 bg-opacity-20 text-blue-200 px-4 py-2 rounded-full text-sm">
-                            <i class="fas fa-award ml-1"></i>
-                            رجل أعمال محترف
-                        </span>
-                    </div>
+            <!-- Animated Scroll Indicator -->
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+                <div class="w-6 h-10 border-2 border-white rounded-full flex justify-center">
+                    <div class="w-1 h-3 bg-white rounded-full mt-2 animate-pulse"></div>
                 </div>
             </div>
+        </section>
 
-            <div class="animate-fadeInUp" style="animation-delay: 0.6s;">
-                <a href="#booking" class="bg-yellow-400 hover:bg-yellow-500 text-blue-900 font-bold py-4 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105 hover:rotate-1">
-                    احجز وحدتك الآن
-                    <i class="fas fa-arrow-left mr-2"></i>
-                </a>
-            </div>
-        </div>
-        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <i class="fas fa-chevron-down text-white text-2xl"></i>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="py-20" style="background-color: var(--primary-bg);">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-6 animate-fadeInUp">
-                    عن مشروع أبراج شاهين
-                </h2>
-                <p class="text-lg max-w-3xl mx-auto animate-fadeInUp" style="animation-delay: 0.2s; color: var(--text-secondary);">
-                    مشروع عقاري متميز يقع في أرقى مناطق الإسكندرية، يجمع بين الفخامة والراحة والموقع الاستراتيجي
-                </p>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="animate-fadeInLeft">
-                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/1140a438-f66e-44e6-b2f5-e766eafd589d.png" alt="مبنى سكني حديث متعدد الطوابق بتصميم معماري أنيق مع واجهة زجاجية وشرفات واسعة في الإسكندرية مصر مع إطلالة على البحر المتوسط" class="rounded-2xl shadow-2xl w-full object-cover transition-transform duration-500 hover:scale-105"/>
+        <!-- About Section -->
+        <section id="about" class="py-24" style="background: var(--primary-bg);">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-20">
+                    <h2 class="text-5xl md:text-6xl font-bold mb-8 animate-fade-in-up futuristic-title">
+                        مشروع المستقبل
+                    </h2>
+                    <p class="text-xl max-w-4xl mx-auto animate-fade-in-up" style="color: var(--text-secondary); animation-delay: 0.3s;">
+                        مشروع عقاري ثوري يدمج التكنولوجيا المتقدمة مع التصميم المعماري الحديث
+                    </p>
                 </div>
-                <div class="animate-fadeInRight">
-                    <h3 class="text-3xl font-bold mb-6" style="color: var(--text-primary);">موقع متميز في الإسكندرية</h3>
-                    <div class="space-y-4" style="color: var(--text-secondary);">
-                        <div class="flex items-start space-x-reverse space-x-3 animate-slide-up">
-                            <i class="fas fa-map-marker-alt text-blue-500 text-xl mt-1"></i>
-                            <p>يقع في منطقة راقية بالإسكندرية بالقرب من الكورنيش والخدمات الحيوية</p>
-                        </div>
-                        <div class="flex items-start space-x-reverse space-x-3 animate-slide-up" style="animation-delay: 0.1s;">
-                            <i class="fas fa-building text-blue-500 text-xl mt-1"></i>
-                            <p>تصميم معماري حديث يجمع بين الأناقة والوظيفية</p>
-                        </div>
-                        <div class="flex items-start space-x-reverse space-x-3 animate-slide-up" style="animation-delay: 0.2s;">
-                            <i class="fas fa-shield-alt text-blue-500 text-xl mt-1"></i>
-                            <p>أعلى معايير الأمان والحماية مع نظام مراقبة متطور</p>
-                        </div>
-                        <div class="flex items-start space-x-reverse space-x-3 animate-slide-up" style="animation-delay: 0.3s;">
-                            <i class="fas fa-car text-blue-500 text-xl mt-1"></i>
-                            <p>مواقف سيارات متعددة المستويات وخدمات صيانة شاملة</p>
-                        </div>
+
+                <div class="grid md:grid-cols-2 gap-16 items-center">
+                    <div class="animate-slide-in-left">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/825c8fe4-7f54-4fcd-8aba-00cf6a285ea0.png" alt="مبنى سكني مستقبلي بتصميم معماري متطور مع تقنيات ذكية وواجهات تفاعلية في الإسكندرية مع إضاءة LED ديناميكية وحدائق عمودية" class="rounded-3xl shadow-2xl w-full object-cover futuristic-card"/>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CEO Section -->
-    <section id="ceo" class="py-20 ceo-section">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-6 animate-fadeInUp">
-                    قائد المشروع
-                </h2>
-                <p class="text-lg max-w-3xl mx-auto animate-fadeInUp" style="animation-delay: 0.2s; color: var(--text-secondary);">
-                    رجل أعمال متميز يقود مشروع أبراج شاهين بخبرة واسعة في مجال التطوير العقاري
-                </p>
-            </div>
-
-            <div class="max-w-4xl mx-auto">
-                <div class="ceo-card rounded-3xl shadow-2xl overflow-hidden animate-fadeInUp" style="animation-delay: 0.3s;">
-                    <div class="bg-gradient-to-br from-blue-600 via-purple-600 to-blue-800 p-12 text-white text-center relative">
-                        <div class="absolute inset-0 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 opacity-20 animate-pulse-slow"></div>
-                        
-                        <div class="relative z-10">
-                            <div class="ceo-avatar w-32 h-32 rounded-full flex items-center justify-center mx-auto mb-6">
-                                <i class="fas fa-user-crown text-white text-5xl"></i>
+                    <div class="animate-slide-in-right" style="animation-delay: 0.3s;">
+                        <h3 class="text-4xl font-bold mb-8 gradient-text-futuristic">تكنولوجيا الغد اليوم</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start space-x-reverse space-x-4 neo-card p-6 interactive-element">
+                                <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center holographic">
+                                    <i class="fas fa-brain text-white text-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-xl mb-2" style="color: var(--text-primary);">نظام ذكي متكامل</h4>
+                                    <p style="color: var(--text-secondary);">تحكم كامل في المنزل عبر الذكاء الاصطناعي والتطبيقات الذكية</p>
+                                </div>
                             </div>
-                            <h3 class="text-4xl font-bold mb-3 animate-glow">محمد نبيل حسنين</h3>
-                            <p class="text-xl text-blue-100 mb-6">المدير التنفيذي والمؤسس</p>
+
+                            <div class="flex items-start space-x-reverse space-x-4 neo-card p-6 interactive-element">
+                                <div class="w-14 h-14 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center holographic">
+                                    <i class="fas fa-leaf text-white text-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-xl mb-2" style="color: var(--text-primary);">طاقة مستدامة</h4>
+                                    <p style="color: var(--text-secondary);">ألواح شمسية متطورة ونظام إدارة طاقة ذكي صديق للبيئة</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-reverse space-x-4 neo-card p-6 interactive-element">
+                                <div class="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center holographic">
+                                    <i class="fas fa-shield-alt text-white text-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-xl mb-2" style="color: var(--text-primary);">أمان بيومتري</h4>
+                                    <p style="color: var(--text-secondary);">أنظمة حماية متقدمة بالتعرف على الوجه وبصمة العين</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CEO Section -->
+        <section id="ceo" class="py-24" style="background: var(--secondary-bg);">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-20">
+                    <h2 class="text-5xl md:text-6xl font-bold mb-8 animate-bounce-in futuristic-title">
+                        عقل المشروع
+                    </h2>
+                    <p class="text-xl max-w-4xl mx-auto animate-bounce-in" style="color: var(--text-secondary); animation-delay: 0.3s;">
+                        رجل أعمال رقمي يقود ثورة التطوير العقاري بالذكاء الاصطناعي
+                    </p>
+                </div>
+
+                <div class="max-w-6xl mx-auto">
+                    <div class="neo-card animate-bounce-in" style="animation-delay: 0.5s;">
+                        <div class="bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 p-16 text-white text-center relative overflow-hidden">
+                            <!-- Animated Background Elements -->
+                            <div class="absolute inset-0 opacity-20">
+                                <div class="absolute top-10 left-10 w-20 h-20 bg-blue-500 rounded-full animate-float-gentle blur-sm"></div>
+                                <div class="absolute top-32 right-16 w-16 h-16 bg-purple-500 rounded-full animate-float-gentle blur-sm" style="animation-delay: 1s;"></div>
+                                <div class="absolute bottom-20 left-20 w-24 h-24 bg-pink-500 rounded-full animate-float-gentle blur-sm" style="animation-delay: 2s;"></div>
+                            </div>
                             
-                            <div class="grid md:grid-cols-3 gap-6 mb-8">
-                                <div class="bg-white bg-opacity-10 rounded-xl p-4 animate-float">
-                                    <i class="fas fa-trophy text-yellow-400 text-2xl mb-2"></i>
-                                    <p class="text-sm">15+ سنة خبرة</p>
+                            <div class="relative z-10">
+                                <div class="ceo-avatar-holographic mb-8">
+                                    <i class="fas fa-user-astronaut text-white text-6xl"></i>
                                 </div>
-                                <div class="bg-white bg-opacity-10 rounded-xl p-4 animate-float" style="animation-delay: 0.5s;">
-                                    <i class="fas fa-building text-yellow-400 text-2xl mb-2"></i>
-                                    <p class="text-sm">50+ مشروع منجز</p>
-                                </div>
-                                <div class="bg-white bg-opacity-10 rounded-xl p-4 animate-float" style="animation-delay: 1s;">
-                                    <i class="fas fa-handshake text-yellow-400 text-2xl mb-2"></i>
-                                    <p class="text-sm">1000+ عميل راضي</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="p-8" style="background-color: var(--card-bg);">
-                        <div class="grid md:grid-cols-2 gap-8">
-                            <div>
-                                <h4 class="text-2xl font-bold mb-4" style="color: var(--text-primary);">الرؤية والخبرة</h4>
-                                <p class="mb-4" style="color: var(--text-secondary);">
-                                    يتولى محمد نبيل حسنين قيادة مشروع أبراج شاهين بخبرة تزيد عن 15 عامًا في مجال التطوير العقاري والاستثمار العقاري في الإسكندرية ومصر.
-                                </p>
-                                <p style="color: var(--text-secondary);">
-                                    يؤمن بأن العقار ليس مجرد استثمار، بل هو بناء لمستقبل أفضل للعائلات المصرية.
-                                </p>
-                            </div>
-                            <div>
-                                <h4 class="text-2xl font-bold mb-4" style="color: var(--text-primary);">التواصل المباشر</h4>
-                                <div class="space-y-4">
-                                    <div class="flex items-center space-x-reverse space-x-3">
-                                        <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
-                                            <i class="fas fa-phone text-white"></i>
-                                        </div>
-                                        <div>
-                                            <p class="font-bold" style="color: var(--text-primary);">01093712126</p>
-                                            <p class="text-sm" style="color: var(--text-muted);">متاح 24/7</p>
-                                        </div>
+                                <h3 class="text-5xl font-bold mb-4 animate-pulse-glow futuristic-title">محمد نبيل حسنين</h3>
+                                <p class="text-2xl text-blue-200 mb-8">المدير التنفيذي والمؤسس الرقمي</p>
+                                
+                                <div class="grid md:grid-cols-4 gap-6 mb-10">
+                                    <div class="glass-card p-6 rounded-xl animate-float-gentle">
+                                        <i class="fas fa-brain text-cyan-400 text-3xl mb-3"></i>
+                                        <p class="text-sm">خبير ذكاء اصطناعي</p>
                                     </div>
-                                    
-                                    <div class="flex space-x-reverse space-x-4 pt-4">
-                                        <a href="tel:01093712126" class="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-full font-bold transition-all duration-300 transform hover:scale-105 hover:rotate-1">
-                                            <i class="fas fa-phone ml-2"></i>
-                                            اتصال فوري
-                                        </a>
-                                        <a href="https://wa.me/2001093712126?text=مرحباً%20أستاذ%20محمد،%20أنا%20مهتم%20بمشروع%20أبراج%20شاهين" target="_blank" class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-full font-bold transition-all duration-300 transform hover:scale-105 hover:rotate-1">
-                                            <i class="fab fa-whatsapp ml-2"></i>
-                                            واتساب مباشر
-                                        </a>
+                                    <div class="glass-card p-6 rounded-xl animate-float-gentle" style="animation-delay: 0.5s;">
+                                        <i class="fas fa-rocket text-purple-400 text-3xl mb-3"></i>
+                                        <p class="text-sm">رائد تكنولوجيا</p>
+                                    </div>
+                                    <div class="glass-card p-6 rounded-xl animate-float-gentle" style="animation-delay: 1s;">
+                                        <i class="fas fa-globe text-green-400 text-3xl mb-3"></i>
+                                        <p class="text-sm">رؤية عالمية</p>
+                                    </div>
+                                    <div class="glass-card p-6 rounded-xl animate-float-gentle" style="animation-delay: 1.5s;">
+                                        <i class="fas fa-infinity text-yellow-400 text-3xl mb-3"></i>
+                                        <p class="text-sm">ابتكار لا محدود</p>
                                     </div>
                                 </div>
+
+                                <div class="flex justify-center space-x-reverse space-x-6">
+                                    <a href="tel:01093712126" class="btn-3d bg-gradient-to-r from-green-400 to-blue-500 text-white px-8 py-4 rounded-full font-bold text-lg">
+                                        <i class="fas fa-phone ml-2"></i>
+                                        اتصال مباشر
+                                    </a>
+                                    <a href="https://wa.me/2001093712126?text=مرحباً%20أستاذ%20محمد،%20أنا%20مهتم%20بمشروع%20أبراج%20شاهين%20المستقبلي" target="_blank" class="btn-3d bg-gradient-to-r from-green-500 to-emerald-600 text-white px-8 py-4 rounded-full font-bold text-lg">
+                                        <i class="fab fa-whatsapp ml-2"></i>
+                                        واتساب فوري
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="p-10" style="background: var(--card-bg);">
+                            <div class="grid md:grid-cols-2 gap-10">
+                                <div>
+                                    <h4 class="text-3xl font-bold mb-6 gradient-text-futuristic">الرؤية المستقبلية</h4>
+                                    <p class="mb-6 text-lg leading-relaxed" style="color: var(--text-secondary);">
+                                        محمد نبيل حسنين ليس مجرد مطور عقاري، بل هو رائد في دمج التكنولوجيا مع العمارة الحديثة. 
+                                        يقود فريقاً من المهندسين والمبرمجين لخلق تجربة سكنية لم تشهدها مصر من قبل.
+                                    </p>
+                                    <div class="space-y-3">
+                                        <div class="flex items-center space-x-reverse space-x-3">
+                                            <i class="fas fa-check-circle text-green-500"></i>
+                                            <span style="color: var(--text-secondary);">خريج هندسة كمبيوتر وإدارة أعمال</span>
+                                        </div>
+                                        <div class="flex items-center space-x-reverse space-x-3">
+                                            <i class="fas fa-check-circle text-green-500"></i>
+                                            <span style="color: var(--text-secondary);">مؤسس 5 شركات تكنولوجيا ناجحة</span>
+                                        </div>
+                                        <div class="flex items-center space-x-reverse space-x-3">
+                                            <i class="fas fa-check-circle text-green-500"></i>
+                                            <span style="color: var(--text-secondary);">خبير في الواقع المعزز والمنازل الذكية</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="text-3xl font-bold mb-6 gradient-text-futuristic">إنجازات رقمية</h4>
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div class="neo-card p-6 text-center interactive-element">
+                                            <div class="text-3xl font-bold text-blue-500 mb-2">50+</div>
+                                            <p class="text-sm" style="color: var(--text-muted);">مشروع ذكي</p>
+                                        </div>
+                                        <div class="neo-card p-6 text-center interactive-element">
+                                            <div class="text-3xl font-bold text-green-500 mb-2">1000+</div>
+                                            <p class="text-sm" style="color: var(--text-muted);">عميل سعيد</p>
+                                        </div>
+                                        <div class="neo-card p-6 text-center interactive-element">
+                                            <div class="text-3xl font-bold text-purple-500 mb-2">99%</div>
+                                            <p class="text-sm" style="color: var(--text-muted);">نسبة رضا</p>
+                                        </div>
+                                        <div class="neo-card p-6 text-center interactive-element">
+                                            <div class="text-3xl font-bold text-yellow-500 mb-2">24/7</div>
+                                            <p class="text-sm" style="color: var(--text-muted);">دعم فني</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Units Section -->
-    <section id="units" class="py-20" style="background-color: var(--secondary-bg);">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-6 animate-fadeInUp">
-                    أنواع الوحدات المتاحة
-                </h2>
-                <p class="text-lg max-w-3xl mx-auto animate-fadeInUp" style="animation-delay: 0.2s; color: var(--text-secondary);">
-                    تنوع في المساحات والتصميمات لتناسب جميع احتياجاتك وميزانيتك
-                </p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="card-hover rounded-2xl shadow-lg overflow-hidden animate-fadeInUp">
-                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c7ca51be-982a-4802-9100-864afb4d91c4.png" alt="شقة سكنية فاخرة بغرف واسعة وأثاث عصري مع إطلالة بانورامية على البحر في الإسكندرية مع ديكور راقي وإضاءة حديثة" class="w-full h-48 object-cover transition-transform duration-500 hover:scale-110"/>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold mb-3" style="color: var(--text-primary);">شقق سكنية</h3>
-                        <p class="mb-4" style="color: var(--text-secondary);">شقق متنوعة المساحات من غرفتين إلى أربع غرف مع تشطيب فاخر</p>
-                        <ul class="text-sm space-y-1" style="color: var(--text-muted);">
-                            <li><i class="fas fa-check text-green-500 ml-2"></i>مساحات من 120 إلى 250 متر</li>
-                            <li><i class="fas fa-check text-green-500 ml-2"></i>شرفات واسعة</li>
-                            <li><i class="fas fa-check text-green-500 ml-2"></i>إطلالات متميزة</li>
-                        </ul>
-                    </div>
+        <!-- Units Section -->
+        <section id="units" class="py-24" style="background: var(--primary-bg);">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-20">
+                    <h2 class="text-5xl md:text-6xl font-bold mb-8 animate-fade-in-up futuristic-title">
+                        وحدات المستقبل
+                    </h2>
+                    <p class="text-xl max-w-4xl mx-auto animate-fade-in-up" style="color: var(--text-secondary); animation-delay: 0.3s;">
+                        وحدات سكنية وتجارية مجهزة بأحدث التقنيات الذكية
+                    </p>
                 </div>
 
-                <div class="card-hover rounded-2xl shadow-lg overflow-hidden animate-fadeInUp" style="animation-delay: 0.2s;">
-                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/b35706a9-a8d8-48f3-b310-4cecf0b6f99e.png" alt="دوبلكس فاخر متعدد الطوابق مع درج داخلي أنيق وصالة واسعة مع أسقف عالية ونوافذ كبيرة في الإسكندرية مع تشطيب راقي" class="w-full h-48 object-cover transition-transform duration-500 hover:scale-110"/>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold mb-3" style="color: var(--text-primary);">دوبلكس</h3>
-                        <p class="mb-4" style="color: var(--text-secondary);">وحدات دوبلكس فاخرة بتصميم عصري ومساحات واسعة</p>
-                        <ul class="text-sm space-y-1" style="color: var(--text-muted);">
-                            <li><i class="fas fa-check text-green-500 ml-2"></i>طابقين بتصميم مفتوح</li>
-                            <li><i class="fas fa-check text-green-500 ml-2"></i>حدائق خاصة</li>
-                            <li><i class="fas fa-check text-green-500 ml-2"></i>أسقف عالية</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="card-hover rounded-2xl shadow-lg overflow-hidden animate-fadeInUp" style="animation-delay: 0.4s;">
-                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/2821d4fb-1bf9-4865-8620-20ceac1b6cc2.png" alt="مكاتب تجارية أنيقة بتصميم حديث مع مساحات عمل مفتوحة وإضاءة طبيعية وأثاث مكتبي راقي في برج تجاري بالإسكندرية" class="w-full h-48 object-cover transition-transform duration-500 hover:scale-110"/>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold mb-3" style="color: var(--text-primary);">وحدات تجارية</h3>
-                        <p class="mb-4" style="color: var(--text-secondary);">مكاتب ومحال تجارية في موقع حيوي ومتميز</p>
-                        <ul class="text-sm space-y-1" style="color: var(--text-muted);">
-                            <li><i class="fas fa-check text-green-500 ml-2"></i>واجهات زجاجية حديثة</li>
-                            <li><i class="fas fa-check text-green-500 ml-2"></i>مرونة في التقسيم</li>
-                            <li><i class="fas fa-check text-green-500 ml-2"></i>موقع تجاري مميز</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="py-20" style="background-color: var(--primary-bg);">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-6 animate-fadeInUp">
-                    مميزات المشروع
-                </h2>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="text-center p-6 animate-fadeInUp">
-                    <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4 animate-float">
-                        <i class="fas fa-swimming-pool text-white text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2" style="color: var(--text-primary);">حمام سباحة</h3>
-                    <p class="text-sm" style="color: var(--text-secondary);">حمام سباحة بمعايير عالمية</p>
-                </div>
-
-                <div class="text-center p-6 animate-fadeInUp" style="animation-delay: 0.1s;">
-                    <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4 animate-float" style="animation-delay: 0.5s;">
-                        <i class="fas fa-dumbbell text-white text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2" style="color: var(--text-primary);">نادي صحي</h3>
-                    <p class="text-sm" style="color: var(--text-secondary);">صالة رياضة مجهزة بالكامل</p>
-                </div>
-
-                <div class="text-center p-6 animate-fadeInUp" style="animation-delay: 0.2s;">
-                    <div class="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4 animate-float" style="animation-delay: 1s;">
-                        <i class="fas fa-tree text-white text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2" style="color: var(--text-primary);">مساحات خضراء</h3>
-                    <p class="text-sm" style="color: var(--text-secondary);">حدائق ومناطق ترفيهية</p>
-                </div>
-
-                <div class="text-center p-6 animate-fadeInUp" style="animation-delay: 0.3s;">
-                    <div class="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4 animate-float" style="animation-delay: 1.5s;">
-                        <i class="fas fa-shield-alt text-white text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2" style="color: var(--text-primary);">أمن وحراسة</h3>
-                    <p class="text-sm" style="color: var(--text-secondary);">حراسة 24 ساعة ونظام مراقبة</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Booking Section -->
-    <section id="booking" class="py-20 booking-form">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-6 animate-fadeInUp">
-                    احجز وحدتك الآن
-                </h2>
-                <p class="text-lg max-w-3xl mx-auto animate-fadeInUp" style="animation-delay: 0.2s; color: var(--text-secondary);">
-                    املأ البيانات التالية وسنتواصل معك في أقرب وقت لحجز وحدتك المفضلة
-                </p>
-            </div>
-
-            <div class="max-w-4xl mx-auto">
-                <div class="card-hover rounded-2xl shadow-2xl p-8 md:p-12 animate-fadeInUp" style="animation-delay: 0.3s;">
-                    <form id="bookingForm" class="grid md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-sm font-bold mb-2" style="color: var(--text-primary);">الاسم الكامل</label>
-                            <input type="text" name="fullName" required class="w-full px-4 py-3 rounded-lg border focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300" style="background-color: var(--primary-bg); border-color: var(--border-color); color: var(--text-primary);" placeholder="اكتب اسمك الكامل">
-                        </div>
-
-                        <div>
-                            <label class="block text-sm font-bold mb-2" style="color: var(--text-primary);">رقم الهاتف</label>
-                            <input type="tel" name="phone" required class="w-full px-4 py-3 rounded-lg border focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300" style="background-color: var(--primary-bg); border-color: var(--border-color); color: var(--text-primary);" placeholder="01xxxxxxxxx">
-                        </div>
-
-                        <div>
-                            <label class="block text-sm font-bold mb-2" style="color: var(--text-primary);">البريد الإلكتروني</label>
-                            <input type="email" name="email" required class="w-full px-4 py-3 rounded-lg border focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300" style="background-color: var(--primary-bg); border-color: var(--border-color); color: var(--text-primary);" placeholder="example@email.com">
-                        </div>
-
-                        <div>
-                            <label class="block text-sm font-bold mb-2" style="color: var(--text-primary);">العمر</label>
-                            <input type="number" name="age" required class="w-full px-4 py-3 rounded-lg border focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300" style="background-color: var(--primary-bg); border-color: var(--border-color); color: var(--text-primary);" placeholder="العمر">
-                        </div>
-
-                        <div>
-                            <label class="block text-sm font-bold mb-2" style="color: var(--text-primary);">نوع الوحدة المطلوبة</label>
-                            <select name="unitType" required class="w-full px-4 py-3 rounded-lg border focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300" style="background-color: var(--primary-bg); border-color: var(--border-color); color: var(--text-primary);">
-                                <option value="">اختر نوع الوحدة</option>
-                                <option value="apartment">شقة سكنية</option>
-                                <option value="duplex">دوبلكس</option>
-                                <option value="commercial">وحدة تجارية</option>
-                            </select>
-                        </div>
-
-                        <div>
-                            <label class="block text-sm font-bold mb-2" style="color: var(--text-primary);">الميزانية المتاحة</label>
-                            <select name="budget" required class="w-full px-4 py-3 rounded-lg border focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300" style="background-color: var(--primary-bg); border-color: var(--border-color); color: var(--text-primary);">
-                                <option value="">اختر الميزانية</option>
-                                <option value="1-2m">1-2 مليون جنيه</option>
-                                <option value="2-3m">2-3 مليون جنيه</option>
-                                <option value="3-5m">3-5 مليون جنيه</option>
-                                <option value="5m+">أكثر من 5 مليون جنيه</option>
-                            </select>
-                        </div>
-
-                        <div class="md:col-span-2">
-                            <label class="block text-sm font-bold mb-2" style="color: var(--text-primary);">ملاحظات إضافية</label>
-                            <textarea name="notes" class="w-full px-4 py-3 rounded-lg border focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 h-24 resize-none" style="background-color: var(--primary-bg); border-color: var(--border-color); color: var(--text-primary);" placeholder="اكتب أي ملاحظات أو متطلبات خاصة"></textarea>
-                        </div>
-
-                        <div class="md:col-span-2 text-center">
-                            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-12 rounded-full text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:rotate-1">
-                                <i class="fas fa-paper-plane ml-2"></i>
-                                إرسال طلب الحجز
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 contact-gradient text-white">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold mb-6 animate-fadeInUp">
-                    تواصل معنا
-                </h2>
-                <p class="text-gray-300 text-lg max-w-3xl mx-auto animate-fadeInUp" style="animation-delay: 0.2s;">
-                    محمد نبيل حسنين وفريق المبيعات في خدمتكم للرد على جميع استفساراتكم
-                </p>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-                <div class="animate-fadeInLeft">
-                    <h3 class="text-3xl font-bold mb-8">معلومات التواصل</h3>
-                    <div class="space-y-6">
-                        <div class="flex items-center space-x-reverse space-x-4 animate-slide-up">
-                            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center animate-glow">
-                                <i class="fas fa-crown text-white text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-xl">محمد نبيل حسنين</h4>
-                                <p class="text-gray-300">المدير التنفيذي والمؤسس</p>
-                                <p class="text-yellow-400 text-sm">رجل الأعمال المتميز</p>
+                <div class="grid md:grid-cols-3 gap-10">
+                    <div class="futuristic-card animate-fade-in-up">
+                        <div class="relative overflow-hidden rounded-t-3xl">
+                            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/3d4ced98-e8f2-4563-bfb3-52e9677519d0.png" alt="شقة ذكية مستقبلية مع أثاث تفاعلي وإضاءة LED ديناميكية وشاشات هولوجرافية ونوافذ ذكية في الإسكندرية" class="w-full h-56 object-cover transition-transform duration-700 hover:scale-110"/>
+                            <div class="absolute top-4 right-4 glass-card px-3 py-1 rounded-full">
+                                <span class="text-white text-sm font-bold">
+                                    <i class="fas fa-robot mr-1"></i>
+                                    ذكي
+                                </span>
                             </div>
                         </div>
-
-                        <div class="flex items-center space-x-reverse space-x-4 animate-slide-up" style="animation-delay: 0.1s;">
-                            <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center animate-pulse-slow">
-                                <i class="fas fa-phone text-white text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-lg">رقم الهاتف</h4>
-                                <p class="text-gray-300 text-2xl font-bold">01093712126</p>
-                                <p class="text-green-400 text-sm">متاح 24/7</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-center space-x-reverse space-x-4 animate-slide-up" style="animation-delay: 0.2s;">
-                            <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center">
-                                <i class="fas fa-map-marker-alt text-white text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-lg">الموقع</h4>
-                                <p class="text-gray-300">الإسكندرية، مصر</p>
-                                <p class="text-purple-400 text-sm">موقع استراتيجي متميز</p>
+                        <div class="p-8">
+                            <h3 class="text-2xl font-bold mb-4 gradient-text-futuristic">شقق ذكية</h3>
+                            <p class="mb-6" style="color: var(--text-secondary);">شقق مجهزة بأنظمة ذكاء اصطناعي للتحكم الكامل</p>
+                            <div class="space-y-2 text-sm" style="color: var(--text-muted);">
+                                <div class="flex items-center space-x-reverse space-x-2">
+                                    <i class="fas fa-microchip text-blue-500"></i>
+                                    <span>تحكم صوتي ذكي</span>
+                                </div>
+                                <div class="flex items-center space-x-reverse space-x-2">
+                                    <i class="fas fa-wifi text-green-500"></i>
+                                    <span>إنترنت 5G مجاني</span>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="mt-12">
-                        <h4 class="text-xl font-bold mb-4">اتصل بنا الآن</h4>
-                        <div class="flex flex-wrap gap-4">
-                            <a href="tel:01093712126" class="bg-green-500 hover:bg-green-600 px-6 py-3 rounded-full font-bold transition-all duration-300 transform hover:scale-105">
-                                <i class="fas fa-phone ml-2"></i>
-                                اتصال مباشر
-                            </a>
-                            <a href="https://wa.me/2001093712126?text=مرحباً،%20أنا%20مهتم%20بمشروع%20أبراج%20شاهين" target="_blank" class="bg-green-600 hover:bg-green-700 px-6 py-3 rounded-full font-bold transition-all duration-300 transform hover:scale-105">
-                                <i class="fab fa-whatsapp ml-2"></i>
-                                واتساب
-                            </a>
+                    <div class="futuristic-card animate-fade-in-up" style="animation-delay: 0.2s;">
+                        <div class="relative overflow-hidden rounded-t-3xl">
+                            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/79fb5eb3-f3af-4bd7-ac72-346e74ffb1b8.png" alt="دوبلكس مستقبلي بتصميم معماري متطور مع حدائق عمودية ذكية وأسقف شفافة قابلة للتحكم ومصاعد هوائية داخلية" class="w-full h-56 object-cover transition-transform duration-700 hover:scale-110"/>
+                            <div class="absolute top-4 right-4 glass-card px-3 py-1 rounded-full">
+                                <span class="text-white text-sm font-bold">
+                                    <i class="fas fa-rocket mr-1"></i>
+                                    متطور
+                                </span>
+                            </div>
+                        </div>
+                        <div class="p-8">
+                            <h3 class="text-2xl font-bold mb-4 gradient-text-futuristic">دوبلكس فضائي</h3>
+                            <p class="mb-6" style="color: var(--text-secondary);">وحدات دوبلكس بتصميم فضائي مع حدائق معلقة</p>
+                            <div class="space-y-2 text-sm" style="color: var(--text-muted);">
+                                <div class="flex items-center space-x-reverse space-x-2">
+                                    <i class="fas fa-seedling text-green-500"></i>
+                                    <span>حدائق هيدروبونية</span>
+                                </div>
+                                <div class="flex items-center space-x-reverse space-x-2">
+                                    <i class="fas fa-wind text-blue-500"></i>
+                                    <span>تنقية هواء ذكية</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="futuristic-card animate-fade-in-up" style="animation-delay: 0.4s;">
+                        <div class="relative overflow-hidden rounded-t-3xl">
+                            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d7d8098c-7e84-4ecf-bd81-1ceb7cb8bbe6.png" alt="مكاتب تجارية مستقبلية مع شاشات هولوجرافية ثلاثية الأبعاد ومساحات عمل تفاعلية ونظام واقع معزز للاجتماعات" class="w-full h-56 object-cover transition-transform duration-700 hover:scale-110"/>
+                            <div class="absolute top-4 right-4 glass-card px-3 py-1 rounded-full">
+                                <span class="text-white text-sm font-bold">
+                                    <i class="fas fa-vr-cardboard mr-1"></i>
+                                    VR
+                                </span>
+                            </div>
+                        </div>
+                        <div class="p-8">
+                            <h3 class="text-2xl font-bold mb-4 gradient-text-futuristic">مكاتب الواقع المعزز</h3>
+                            <p class="mb-6" style="color: var(--text-secondary);">مساحات عمل مجهزة بتقنيات الواقع المعزز</p>
+                            <div class="space-y-2 text-sm" style="color: var(--text-muted);">
+                                <div class="flex items-center space-x-reverse space-x-2">
+                                    <i class="fas fa-cube text-purple-500"></i>
+                                    <span>اجتماعات ثلاثية الأبعاد</span>
+                                </div>
+                                <div class="flex items-center space-x-reverse space-x-2">
+                                    <i class="fas fa-cloud text-blue-500"></i>
+                                    <span>حوسبة سحابية</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <div class="animate-fadeInRight">
-                    <div class="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-2xl p-8">
-                        <h3 class="text-2xl font-bold mb-6">أرسل رسالة سريعة</h3>
-                        <form id="quickForm" class="space-y-4">
-                            <input type="text" placeholder="الاسم" class="w-full px-4 py-3 rounded-lg bg-white bg-opacity-20 border border-white border-opacity-30 text-white placeholder-gray-300 focus:ring-2 focus:ring-blue-400 transition-all duration-300">
-                            <input type="tel" placeholder="رقم الهاتف" class="w-full px-4 py-3 rounded-lg bg-white bg-opacity-20 border border-white border-opacity-30 text-white placeholder-gray-300 focus:ring-2 focus:ring-blue-400 transition-all duration-300">
-                            <textarea placeholder="رسالتك" rows="4" class="w-full px-4 py-3 rounded-lg bg-white bg-opacity-20 border border-white border-opacity-30 text-white placeholder-gray-300 focus:ring-2 focus:ring-blue-400 transition-all duration-300 resize-none"></textarea>
-                            <button type="submit" class="w-full bg-yellow-400 hover:bg-yellow-500 text-blue-900 font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105">
-                                إرسال الرسالة
-                                <i class="fas fa-paper-plane mr-2"></i>
-                            </button>
+        <!-- Features Section -->
+        <section class="py-24" style="background: var(--secondary-bg);">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-20">
+                    <h2 class="text-5xl md:text-6xl font-bold mb-8 animate-fade-in-up futuristic-title">
+                        مميزات المستقبل
+                    </h2>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="text-center p-8 neo-card animate-fade-in-up interactive-element">
+                        <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-6 holographic">
+                            <i class="fas fa-swimming-pool text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3" style="color: var(--text-primary);">مسبح ذكي</h3>
+                        <p class="text-sm" style="color: var(--text-secondary);">مسبح بتقنية التنظيف الذاتي</p>
+                    </div>
+
+                    <div class="text-center p-8 neo-card animate-fade-in-up interactive-element" style="animation-delay: 0.1s;">
+                        <div class="w-20 h-20 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-6 holographic">
+                            <i class="fas fa-dumbbell text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3" style="color: var(--text-primary);">جيم هولوجرافي</h3>
+                        <p class="text-sm" style="color: var(--text-secondary);">نادي صحي مع مدرب ثلاثي الأبعاد</p>
+                    </div>
+
+                    <div class="text-center p-8 neo-card animate-fade-in-up interactive-element" style="animation-delay: 0.2s;">
+                        <div class="w-20 h-20 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-6 holographic">
+                            <i class="fas fa-tree text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3" style="color: var(--text-primary);">حدائق بيونية</h3>
+                        <p class="text-sm" style="color: var(--text-secondary);">حدائق عمودية ذكية تنقي الهواء</p>
+                    </div>
+
+                    <div class="text-center p-8 neo-card animate-fade-in-up interactive-element" style="animation-delay: 0.3s;">
+                        <div class="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-6 holographic">
+                            <i class="fas fa-shield-alt text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3" style="color: var(--text-primary);">أمان بيومتري</h3>
+                        <p class="text-sm" style="color: var(--text-secondary);">حماية بالذكاء الاصطناعي</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Booking Section -->
+        <section id="booking" class="py-24" style="background: var(--primary-bg);">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-20">
+                    <h2 class="text-5xl md:text-6xl font-bold mb-8 animate-fade-in-up futuristic-title">
+                        احجز مستقبلك
+                    </h2>
+                    <p class="text-xl max-w-4xl mx-auto animate-fade-in-up" style="color: var(--text-secondary); animation-delay: 0.3s;">
+                        ادخل إلى عالم المستقبل واحجز وحدتك الذكية الآن
+                    </p>
+                </div>
+
+                <div class="max-w-5xl mx-auto">
+                    <div class="neo-card p-12 animate-fade-in-up" style="animation-delay: 0.5s;">
+                        <form id="bookingForm" class="grid md:grid-cols-2 gap-8">
+                            <div class="space-y-2">
+                                <label class="block text-sm font-bold mb-3" style="color: var(--text-primary);">
+                                    <i class="fas fa-user mr-2 text-blue-500"></i>
+                                    الاسم الكامل
+                                </label>
+                                <input type="text" name="fullName" required class="futuristic-input w-full" placeholder="اكتب اسمك الكامل">
+                            </div>
+
+                            <div class="space-y-2">
+                                <label class="block text-sm font-bold mb-3" style="color: var(--text-primary);">
+                                    <i class="fas fa-phone mr-2 text-green-500"></i>
+                                    رقم الهاتف
+                                </label>
+                                <input type="tel" name="phone" required class="futuristic-input w-full" placeholder="01xxxxxxxxx">
+                            </div>
+
+                            <div class="space-y-2">
+                                <label class="block text-sm font-bold mb-3" style="color: var(--text-primary);">
+                                    <i class="fas fa-envelope mr-2 text-purple-500"></i>
+                                    البريد الإلكتروني
+                                </label>
+                                <input type="email" name="email" required class="futuristic-input w-full" placeholder="example@email.com">
+                            </div>
+
+                            <div class="space-y-2">
+                                <label class="block text-sm font-bold mb-3" style="color: var(--text-primary);">
+                                    <i class="fas fa-calendar mr-2 text-yellow-500"></i>
+                                    العمر
+                                </label>
+                                <input type="number" name="age" required class="futuristic-input w-full" placeholder="العمر">
+                            </div>
+
+                            <div class="space-y-2">
+                                <label class="block text-sm font-bold mb-3" style="color: var(--text-primary);">
+                                    <i class="fas fa-home mr-2 text-indigo-500"></i>
+                                    نوع الوحدة المطلوبة
+                                </label>
+                                <select name="unitType" required class="futuristic-input w-full">
+                                    <option value="">اختر نوع الوحدة</option>
+                                    <option value="smart-apartment">شقة ذكية</option>
+                                    <option value="space-duplex">دوبلكس فضائي</option>
+                                    <option value="ar-office">مكتب واقع معزز</option>
+                                </select>
+                            </div>
+
+                            <div class="space-y-2">
+                                <label class="block text-sm font-bold mb-3" style="color: var(--text-primary);">
+                                    <i class="fas fa-coins mr-2 text-yellow-500"></i>
+                                    الميزانية المتاحة
+                                </label>
+                                <select name="budget" required class="futuristic-input w-full">
+                                    <option value="">اختر الميزانية</option>
+                                    <option value="2-3m">2-3 مليون جنيه</option>
+                                    <option value="3-5m">3-5 مليون جنيه</option>
+                                    <option value="5-10m">5-10 مليون جنيه</option>
+                                    <option value="10m+">أكثر من 10 مليون جنيه</option>
+                                </select>
+                            </div>
+
+                            <div class="md:col-span-2 space-y-2">
+                                <label class="block text-sm font-bold mb-3" style="color: var(--text-primary);">
+                                    <i class="fas fa-comment mr-2 text-pink-500"></i>
+                                    متطلبات مستقبلية خاصة
+                                </label>
+                                <textarea name="notes" class="futuristic-input w-full h-32 resize-none" placeholder="اكتب متطلباتك التكنولوجية الخاصة"></textarea>
+                            </div>
+
+                            <div class="md:col-span-2 text-center mt-8">
+                                <button type="submit" class="btn-3d bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 text-white font-bold py-5 px-12 rounded-full text-xl shadow-2xl hover:shadow-blue-500/25 animate-pulse-glow">
+                                    <i class="fas fa-rocket ml-3"></i>
+                                    إطلاق طلب الحجز
+                                    <i class="fas fa-sparkles mr-3"></i>
+                                </button>
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="container mx-auto px-4 text-center">
-            <div class="mb-8">
-                <h3 class="text-3xl font-bold mb-4">
-                    <i class="fas fa-building text-yellow-400 ml-2"></i>
-                    أبراج شاهين
-                </h3>
-                <p class="text-gray-400 max-w-2xl mx-auto mb-4">
-                    مشروع عقاري راقي في الإسكندرية يجمع بين الفخامة والراحة في موقع استراتيجي متميز
-                </p>
-                <p class="text-gray-500 text-sm">
-                    بقيادة: محمد نبيل حسنين
-                </p>
+        <!-- Contact Section -->
+        <section id="contact" class="py-24 relative overflow-hidden" style="background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);">
+            <div class="container mx-auto px-4 relative z-10">
+                <div class="text-center mb-20">
+                    <h2 class="text-5xl md:text-6xl font-bold mb-8 text-white animate-fade-in-up futuristic-title">
+                        تواصل مع المستقبل
+                    </h2>
+                    <p class="text-xl max-w-4xl mx-auto text-gray-300 animate-fade-in-up" style="animation-delay: 0.3s;">
+                        محمد نبيل حسنين وفريق التكنولوجيا في خدمتكم 24/7
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-16 max-w-7xl mx-auto">
+                    <div class="animate-slide-in-left">
+                        <h3 class="text-4xl font-bold mb-10 text-white">معلومات التواصل</h3>
+                        <div class="space-y-8">
+                            <div class="flex items-center space-x-reverse space-x-6 glass-card p-6 rounded-2xl interactive-element">
+                                <div class="ceo-avatar-holographic w-16 h-16">
+                                    <i class="fas fa-user-astronaut text-white text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-2xl text-white mb-1">محمد نبيل حسنين</h4>
+                                    <p class="text-gray-300">المدير التنفيذي والمؤسس</p>
+                                    <p class="text-yellow-400 text-sm">رائد التكنولوجيا العقارية</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center space-x-reverse space-x-6 glass-card p-6 rounded-2xl interactive-element">
+                                <div class="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-600 rounded-full flex items-center justify-center animate-pulse-glow">
+                                    <i class="fas fa-phone text-white text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-xl text-white">هاتف مباشر</h4>
+                                    <p class="text-3xl font-bold text-green-400">01093712126</p>
+                                    <p class="text-green-300 text-sm">متاح 24/7</p>
+                                </div>
+                            </div>
+
+                            <div class="flex justify-center space-x-reverse space-x-6 mt-8">
+                                <a href="tel:01093712126" class="btn-3d bg-gradient-to-r from-green-400 to-blue-500 text-white px-8 py-4 rounded-full font-bold text-lg">
+                                    <i class="fas fa-phone ml-2"></i>
+                                    اتصال فوري
+                                </a>
+                                <a href="https://wa.me/2001093712126?text=مرحباً%20أستاذ%20محمد،%20أنا%20مهتم%20بمشروع%20أبراج%20شاهين%20المستقبلي" target="_blank" class="btn-3d bg-gradient-to-r from-green-500 to-emerald-600 text-white px-8 py-4 rounded-full font-bold text-lg">
+                                    <i class="fab fa-whatsapp ml-2"></i>
+                                    واتساب
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="animate-slide-in-right" style="animation-delay: 0.3s;">
+                        <div class="glass-card rounded-3xl p-10">
+                            <h3 class="text-3xl font-bold mb-8 text-white gradient-text-futuristic">رسالة سريعة</h3>
+                            <form id="quickContactForm" class="space-y-6">
+                                <input type="text" name="name" placeholder="الاسم" class="futuristic-input w-full text-white">
+                                <input type="tel" name="phone" placeholder="رقم الهاتف" class="futuristic-input w-full text-white">
+                                <textarea name="message" placeholder="رسالتك" rows="4" class="futuristic-input w-full resize-none text-white"></textarea>
+                                <button type="submit" class="btn-3d w-full bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-blue-900 font-bold py-4 px-8 rounded-2xl text-lg animate-pulse-glow">
+                                    <i class="fas fa-paper-plane mr-3"></i>
+                                    إرسال الرسالة
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </section>
 
-            <div class="border-t border-gray-700 pt-8">
-                <p class="text-gray-400 mb-2">
-                    جميع الحقوق محفوظة © 2025 أبراج شاهين - الإسكندرية
-                </p>
-                <p class="text-gray-500 text-sm">
-                    <i class="fas fa-code text-yellow-400 ml-1"></i>
-                    تم تصميم الموقع بواسطة Mohamed Nabil Hasanin • جميع الحقوق محفوظة 2025
-                </p>
+        <!-- Footer -->
+        <footer class="py-16" style="background: linear-gradient(135deg, #000000 0%, #1a1a2e 100%);">
+            <div class="container mx-auto px-4 text-center">
+                <div class="mb-10">
+                    <h3 class="text-4xl font-bold mb-6 text-white">
+                        <i class="fas fa-building text-yellow-400 ml-3 animate-rotate-slow"></i>
+                        <span class="futuristic-title">أبراج شاهين</span>
+                    </h3>
+                    <p class="text-gray-400 max-w-3xl mx-auto mb-6 text-lg">
+                        مشروع عقاري مستقبلي في الإسكندرية يدمج أحدث التقنيات مع الراحة والفخامة
+                    </p>
+                    <p class="text-gray-500">
+                        بقيادة: <span class="text-yellow-400 font-bold">محمد نبيل حسنين</span> - رائد التكنولوجيا العقارية
+                    </p>
+                </div>
+
+                <div class="border-t border-gray-700 pt-8">
+                    <p class="text-gray-400 mb-3">
+                        جميع الحقوق محفوظة © 2025 أبراج شاهين - الإسكندرية
+                    </p>
+                    <p class="text-gray-500 text-sm">
+                        <i class="fas fa-code text-yellow-400 ml-2"></i>
+                        تم تصميم الموقع بتقنيات المستقبل بواسطة Mohamed Nabil Hasanin • جميع الحقوق محفوظة 2025
+                    </p>
+                </div>
             </div>
-        </div>
-    </footer>
+        </footer>
 
-    <!-- Floating WhatsApp Button -->
-    <div class="fixed bottom-6 left-6 z-50">
-        <a href="https://wa.me/2001093712126?text=مرحباً،%20أنا%20مهتم%20بمشروع%20أبراج%20شاهين" target="_blank" class="bg-green-500 hover:bg-green-600 w-16 h-16 rounded-full flex items-center justify-center shadow-2xl animate-bounce">
-            <i class="fab fa-whatsapp text-white text-2xl"></i>
-        </a>
+        <!-- Floating WhatsApp Button -->
+        <div class="fixed bottom-8 left-8 z-50">
+            <a href="https://wa.me/2001093712126?text=مرحباً%20أستاذ%20محمد،%20أنا%20مهتم%20بمشروع%20أبراج%20شاهين%20المستقبلي" target="_blank" class="w-20 h-20 rounded-full flex items-center justify-center shadow-2xl animate-bounce holographic">
+                <i class="fab fa-whatsapp text-white text-3xl"></i>
+            </a>
+        </div>
     </div>
 
     <!-- JavaScript -->
     <script>
-        // Theme toggle with localStorage
-        function setTheme(theme){
-            document.body.setAttribute('data-theme', theme);
-            try { localStorage.setItem('shaheen-theme', theme); } catch(e){}
+        // Initialize loading and main content
+        function initializeWebsite() {
+            // Show loading animation first
+            const loadingAnimation = document.getElementById('loadingAnimation');
+            const mainContent = document.getElementById('mainContent');
+            
+            // Hide main content initially
+            mainContent.style.display = 'none';
+            
+            // Show loading for 2 seconds then reveal content
+            setTimeout(() => {
+                loadingAnimation.classList.add('hidden');
+                mainContent.style.display = 'block';
+                
+                // Add a small delay then fade in content
+                setTimeout(() => {
+                    mainContent.classList.add('loaded');
+                }, 100);
+            }, 2000);
         }
-        function toggleTheme(){
-            const current = document.body.getAttribute('data-theme') || 'light';
-            setTheme(current === 'light' ? 'dark' : 'light');
-        }
-        (function initTheme(){
-            try {
-                const saved = localStorage.getItem('shaheen-theme');
-                if(saved){ setTheme(saved); }
-            } catch(e){}
-        })();
 
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
+        // Dark Mode Toggle
+        function toggleTheme() {
+            const body = document.body;
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
+
+        // Form validation and submission
+        function isSpecialName(name) {
+            const specialKeywords = [
+                'احمد ابراهيم حسنين',
+                'ahmed hasanin',
+                'أحمد إبراهيم حسنين',
+                'احمد حسنين',
+                'ahmed ibrahim hasanin',
+                'احمد ابراهيم',
+                'ahmed ibrahim'
+            ];
+            
+            const normalizedName = name.toLowerCase().trim();
+            return specialKeywords.some(keyword => normalizedName.includes(keyword.toLowerCase()));
+        }
+
+        function showSuccessModal(isSpecial = false) {
+            const modal = document.getElementById('successModal');
+            const successIcon = document.getElementById('successIcon');
+            const successTitle = document.getElementById('successTitle');
+            const successMessage = document.getElementById('successMessage');
+            const specialImage = document.getElementById('specialImage');
+
+            if (isSpecial) {
+                successIcon.innerHTML = '<i class="fas fa-crown text-8xl gradient-text-futuristic"></i>';
+                successTitle.textContent = 'أهلاً وسهلاً في عالم المستقبل!';
+                successMessage.textContent = 'تم التسجيل في النظام الكوانتي! انتظر اتصالاً من رجل الأعمال الرقمي';
+                specialImage.style.display = 'block';
+            } else {
+                successIcon.innerHTML = '<i class="fas fa-check-circle"></i>';
+                successTitle.textContent = 'تم إرسال الطلب إلى المستقبل!';
+                successMessage.textContent = 'انتظر مكالمة من أفضل رجال الأعمال التكنولوجيين';
+                specialImage.style.display = 'none';
+            }
+
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('successModal');
+            modal.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Initialize everything when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load saved theme
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.body.setAttribute('data-theme', savedTheme);
+            
+            // Initialize website
+            initializeWebsite();
+            
+            // Smooth scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
                     e.preventDefault();
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Form submissions
+            const bookingForm = document.getElementById('bookingForm');
+            if (bookingForm) {
+                bookingForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const formData = new FormData(this);
+                    const name = formData.get('fullName') || '';
+                    const isSpecial = isSpecialName(name);
+
+                    // Add loading effect to button
+                    const submitBtn = this.querySelector('button[type="submit"]');
+                    const originalText = submitBtn.innerHTML;
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin ml-2"></i> جاري الإرسال...';
+                    submitBtn.disabled = true;
+
+                    // Simulate network delay
+                    setTimeout(() => {
+                        showSuccessModal(isSpecial);
+                        this.reset();
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                    }, 1500);
+                });
+            }
+
+            const quickContactForm = document.getElementById('quickContactForm');
+            if (quickContactForm) {
+                quickContactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const formData = new FormData(this);
+                    const name = formData.get('name') || '';
+                    const isSpecial = isSpecialName(name);
+
+                    showSuccessModal(isSpecial);
+                    this.reset();
+                });
+            }
+
+            // Modal events
+            const modal = document.getElementById('successModal');
+            if (modal) {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        closeModal();
+                    }
+                });
+
+                const closeBtn = document.querySelector('.close-btn');
+                if (closeBtn) {
+                    closeBtn.addEventListener('click', closeModal);
+                }
+            }
+
+            // Keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeModal();
+                }
+                if (e.ctrlKey && e.key === 'd') {
+                    e.preventDefault();
+                    toggleTheme();
                 }
             });
-        });
 
-        // Intersection animations
-        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) entry.target.style.animationPlayState = 'running'; });
-        }, observerOptions);
-        document.querySelectorAll('.animate-fadeInUp, .animate-fadeInLeft, .animate-fadeInRight, .animate-slide-up').forEach(el => {
-            el.style.animationPlayState = 'paused';
-            observer.observe(el);
-        });
-
-        // Modal helpers
-        const modal = document.getElementById('successModal');
-        const specialImg = document.getElementById('specialImage');
-        function openModal(){ modal.classList.add('show'); modal.setAttribute('aria-hidden','false'); }
-        function closeModal(){ modal.classList.remove('show'); modal.setAttribute('aria-hidden','true'); specialImg.style.display='none'; }
-        window.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ closeModal(); } });
-
-        // Booking form submit
-        document.getElementById('bookingForm').addEventListener('submit', function(e){
-            e.preventDefault();
-            const data = Object.fromEntries(new FormData(this).entries());
-            if(data.unitType === 'commercial'){ specialImg.style.display = 'block'; }
-            openModal();
-            this.reset();
-        });
-
-        // Quick contact form
-        document.getElementById('quickForm').addEventListener('submit', function(e){
-            e.preventDefault();
-            openModal();
-            this.reset();
+            // Enhanced interactions
+            document.querySelectorAll('.interactive-element').forEach(element => {
+                element.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.05) translateY(-5px)';
+                    this.style.filter = 'brightness(1.1) saturate(1.2)';
+                });
+                
+                element.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1) translateY(0)';
+                    this.style.filter = 'brightness(1) saturate(1)';
+                });
+            });
         });
     </script>
 </body>
