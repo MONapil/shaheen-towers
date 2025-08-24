@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أبراج شاهين - الإسكندرية | مشروع عقاري راقي</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            font-family: 'Cairo', sans-serif;
+        }
+        
+        .hero-bg {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #60a5fa 100%);
+        }
+        
+        .animate-fadeInUp {
+            animation: fadeInUp 1s ease-out forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .animate-fadeInLeft {
+            animation: fadeInLeft 1s ease-out forwards;
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+        
+        .animate-fadeInRight {
+            animation: fadeInRight 1s ease-out forwards;
+            opacity: 0;
+            transform: translateX(30px);
+        }
+        
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .animate-pulse-slow {
+            animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeInRight {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .booking-form {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+        
+        .contact-gradient {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+        
+        .leadership-cards {
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 overflow-x-hidden">
+
+    <!-- Header -->
+    <header class="fixed top-0 w-full z-50 glass-effect">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="text-2xl font-bold text-white">
+                    <i class="fas fa-building text-yellow-400 ml-2"></i>
+                    أبراج شاهين
+                </div>
+                <div class="hidden md:flex space-x-reverse space-x-8">
+                    <a href="#home" class="text-white hover:text-yellow-400 transition-colors duration-300">الرئيسية</a>
+                    <a href="#about" class="text-white hover:text-yellow-400 transition-colors duration-300">عن المشروع</a>
+                    <a href="#leadership" class="text-white hover:text-yellow-400 transition-colors duration-300">القيادة</a>
+                    <a href="#units" class="text-white hover:text-yellow-400 transition-colors duration-300">الوحدات</a>
+                    <a href="#booking" class="text-white hover:text-yellow-400 transition-colors duration-300">احجز وحدتك</a>
+                    <a href="#contact" class="text-white hover:text-yellow-400 transition-colors duration-300">تواصل معنا</a>
+                </div>
+                <button class="md:hidden text-white">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg min-h-screen flex items-center justify-center relative">
+        <div class="absolute inset-0 bg-black bg-opacity-30"></div>
+        <div class="container mx-auto px-4 text-center text-white relative z-10">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 animate-fadeInUp">
+                أبراج شاهين
+            </h1>
+            <p class="text-xl md:text-2xl mb-6 animate-fadeInUp" style="animation-delay: 0.2s;">
+                مشروع عقاري راقي في قلب الإسكندرية
+            </p>
+            <p class="text-lg md:text-xl mb-8 animate-fadeInUp max-w-2xl mx-auto" style="animation-delay: 0.4s;">
+                اكتشف أرقى الوحدات السكنية والتجارية بتصميم معماري حديث وخدمات متكاملة
+            </p>
+            
+            <!-- Leadership Section in Hero -->
+            <div class="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-2xl p-6 mb-12 max-w-4xl mx-auto animate-fadeInUp" style="animation-delay: 0.5s;">
+                <h3 class="text-2xl font-bold mb-4 text-yellow-400">بقيادة نخبة من رجال الأعمال المميزين</h3>
+                <div class="grid md:grid-cols-3 gap-4 text-center">
+                    <div class="p-4">
+                        <div class="w-16 h-16 bg-yellow-400 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-user-tie text-blue-900 text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold text-lg">محمد نبيل حسنين</h4>
+                        <p class="text-sm text-gray-200">مدير المشروع</p>
+                    </div>
+                    <div class="p-4">
+                        <div class="w-16 h-16 bg-yellow-400 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-crown text-blue-900 text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold text-lg">علي عادل حسنين</h4>
+                        <p class="text-sm text-gray-200">المدير العام</p>
+                    </div>
+                    <div class="p-4">
+                        <div class="w-16 h-16 bg-yellow-400 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-handshake text-blue-900 text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold text-lg">محمد عادل حسنين</h4>
+                        <p class="text-sm text-gray-200">شريك في الإدارة</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="animate-fadeInUp" style="animation-delay: 0.6s;">
+                <a href="#booking" class="bg-yellow-400 hover:bg-yellow-500 text-blue-900 font-bold py-4 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105">
+                    احجز وحدتك الآن
+                    <i class="fas fa-arrow-left mr-2"></i>
+                </a>
+            </div>
+        </div>
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i class="fas fa-chevron-down text-white text-2xl"></i>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-6 animate-fadeInUp">
+                    عن مشروع أبراج شاهين
+                </h2>
+                <p class="text-gray-600 text-lg max-w-3xl mx-auto animate-fadeInUp" style="animation-delay: 0.2s;">
+                    مشروع عقاري متميز يقع في أرقى مناطق الإسكندرية، يجمع بين الفخامة والراحة والموقع الاستراتيجي
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="animate-fadeInLeft">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/63919e81-6460-4fb8-9e67-fa0a80eb7eb5.png" alt="مبنى سكني حديث متعدد الطوابق بتصميم معماري أنيق مع واجهة زجاجية وشرفات واسعة في الإسكندرية مصر مع إطلالة على البحر المتوسط" class="rounded-2xl shadow-2xl w-full object-cover"/>
+                </div>
+                <div class="animate-fadeInRight">
+                    <h3 class="text-3xl font-bold text-gray-800 mb-6">موقع متميز في الإسكندرية</h3>
+                    <div class="space-y-4 text-gray-600">
+                        <div class="flex items-start space-x-reverse space-x-3">
+                            <i class="fas fa-map-marker-alt text-blue-500 text-xl mt-1"></i>
+                            <p>يقع في منطقة راقية بالإسكندرية بالقرب من الكورنيش والخدمات الحيوية</p>
+                        </div>
+                        <div class="flex items-start space-x-reverse space-x-3">
+                            <i class="fas fa-building text-blue-500 text-xl mt-1"></i>
+                            <p>تصميم معماري حديث يجمع بين الأناقة والوظيفية</p>
+                        </div>
+                        <div class="flex items-start space-x-reverse space-x-3">
+                            <i class="fas fa-shield-alt text-blue-500 text-xl mt-1"></i>
+                            <p>أعلى معايير الأمان والحماية مع نظام مراقبة متطور</p>
+                        </div>
+                        <div class="flex items-start space-x-reverse space-x-3">
+                            <i class="fas fa-car text-blue-500 text-xl mt-1"></i>
+                            <p>مواقف سيارات متعددة المستويات وخدمات صيانة شاملة</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership Team Section -->
+    <section id="leadership" class="py-20 leadership-cards">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-6 animate-fadeInUp">
+                    فريق القيادة
+                </h2>
+                <p class="text-gray-600 text-lg max-w-3xl mx-auto animate-fadeInUp" style="animation-delay: 0.2s;">
+                    نخبة من رجال الأعمال والخبراء في مجال التطوير العقاري يقودون مشروع أبراج شاهين نحو التميز
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden card-hover animate-fadeInUp">
+                    <div class="bg-gradient-to-br from-blue-500 to-blue-700 p-8 text-white text-center">
+                        <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-user-tie text-blue-600 text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2">محمد نبيل حسنين</h3>
+                        <p class="text-blue-100">مدير المشروع</p>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4">يتولى الإشراف العام على تنفيذ المشروع وضمان أعلى معايير الجودة والتميز في جميع مراحل التطوير.</p>
+                        <div class="flex items-center justify-center">
+                            <a href="tel:01093712126" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-colors duration-300">
+                                <i class="fas fa-phone ml-2"></i>
+                                تواصل مباشر
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden card-hover animate-fadeInUp" style="animation-delay: 0.2s;">
+                    <div class="bg-gradient-to-br from-green-500 to-green-700 p-8 text-white text-center">
+                        <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-crown text-green-600 text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2">علي عادل حسنين</h3>
+                        <p class="text-green-100">المدير العام</p>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4">يدير العمليات التشغيلية والاستراتيجية للمشروع مع التركيز على تحقيق رؤية الشركة وأهدافها طويلة المدى.</p>
+                        <div class="flex items-center justify-center">
+                            <span class="bg-green-100 text-green-700 px-4 py-2 rounded-lg">
+                                <i class="fas fa-briefcase ml-2"></i>
+                                الإدارة العليا
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden card-hover animate-fadeInUp" style="animation-delay: 0.4s;">
+                    <div class="bg-gradient-to-br from-yellow-500 to-yellow-600 p-8 text-white text-center">
+                        <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-handshake text-yellow-600 text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2">محمد عادل حسنين</h3>
+                        <p class="text-yellow-100">شريك في الإدارة</p>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4">يساهم في وضع الاستراتيجيات والخطط التطويرية مع التركيز على ضمان رضا العملاء وتحقيق معايير التميز.</p>
+                        <div class="flex items-center justify-center">
+                            <span class="bg-yellow-100 text-yellow-700 px-4 py-2 rounded-lg">
+                                <i class="fas fa-star ml-2"></i>
+                                الشراكة الإستراتيجية
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Units Section -->
+    <section id="units" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-6 animate-fadeInUp">
+                    أنواع الوحدات المتاحة
+                </h2>
+                <p class="text-gray-600 text-lg max-w-3xl mx-auto animate-fadeInUp" style="animation-delay: 0.2s;">
+                    تنوع في المساحات والتصميمات لتناسب جميع احتياجاتك وميزانيتك
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover animate-fadeInUp">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/e8013727-fc2d-41fc-858d-f66cb1f94f02.png" alt="شقة سكنية فاخرة بغرف واسعة وأثاث عصري مع إطلالة بانورامية على البحر في الإسكندرية مع ديكور راقي وإضاءة حديثة" class="w-full h-48 object-cover"/>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">شقق سكنية</h3>
+                        <p class="text-gray-600 mb-4">شقق متنوعة المساحات من غرفتين إلى أربع غرف مع تشطيب فاخر</p>
+                        <ul class="text-sm text-gray-500 space-y-1">
+                            <li><i class="fas fa-check text-green-500 ml-2"></i>مساحات من 120 إلى 250 متر</li>
+                            <li><i class="fas fa-check text-green-500 ml-2"></i>شرفات واسعة</li>
+                            <li><i class="fas fa-check text-green-500 ml-2"></i>إطلالات متميزة</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover animate-fadeInUp" style="animation-delay: 0.2s;">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/b39cbc91-3732-4250-b550-61a85c9696ff.png" alt="دوبلكس فاخر متعدد الطوابق مع درج داخلي أنيق وصالة واسعة مع أسقف عالية ونوافذ كبيرة في الإسكندرية مع تشطيب راقي" class="w-full h-48 object-cover"/>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">دوبلكس</h3>
+                        <p class="text-gray-600 mb-4">وحدات دوبلكس فاخرة بتصميم عصري ومساحات واسعة</p>
+                        <ul class="text-sm text-gray-500 space-y-1">
+                            <li><i class="fas fa-check text-green-500 ml-2"></i>طابقين بتصميم مفتوح</li>
+                            <li><i class="fas fa-check text-green-500 ml-2"></i>حدائق خاصة</li>
+                            <li><i class="fas fa-check text-green-500 ml-2"></i>أسقف عالية</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover animate-fadeInUp" style="animation-delay: 0.4s;">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/311e61b0-d930-41f9-84d8-ca3f642faba0.png" alt="مكاتب تجارية أنيقة بتصميم حديث مع مساحات عمل مفتوحة وإضاءة طبيعية وأثاث مكتبي راقي في برج تجاري بالإسكندرية" class="w-full h-48 object-cover"/>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">وحدات تجارية</h3>
+                        <p class="text-gray-600 mb-4">مكاتب ومحال تجارية في موقع حيوي ومتميز</p>
+                        <ul class="text-sm text-gray-500 space-y-1">
+                            <li><i class="fas fa-check text-green-500 ml-2"></i>واجهات زجاجية حديثة</li>
+                            <li><i class="fas fa-check text-green-500 ml-2"></i>مرونة في التقسيم</li>
+                            <li><i class="fas fa-check text-green-500 ml-2"></i>موقع تجاري مميز</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 bg-blue-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4ل md:text-5xl font-bold gradient-text mb-6 animate-fadeInUp">
+                    مميزات المشروع
+                </h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="text-center p-6 animate-fadeInUp">
+                    <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4 animate-float">
+                        <i class="fas fa-swimming-pool text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">حمام سباحة</h3>
+                    <p class="text-gray-600 text-sm">حمام سباحة بمعايير عالمية</p>
+                </div>
+
+                <div class="text-center p-6 animate-fadeInUp" style="animation-delay: 0.1s;">
+                    <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4 animate-float" style="animation-delay: 0.5s;">
+                        <i class="fas fa-dumbbell text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">نادي صحي</h3>
+                    <p class="text-gray-600 text-sm">صالة رياضة مجهزة بالكامل</p>
+                </div>
+
+                <div class="text-center p-6 animate-fadeInUp" style="animation-delay: 0.2s;">
+                    <div class="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4 animate-float" style="animation-delay: 1s;">
+                        <i class="fas fa-tree text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">مساحات خضراء</h3>
+                    <p class="text-gray-600 text-sm">حدائق ومناطق ترفيهية</p>
+                </div>
+
+                <div class="text-center p-6 animate-fadeInUp" style="animation-delay: 0.3s;">
+                    <div class="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4 animate-float" style="animation-delay: 1.5s;">
+                        <i class="fas fa-shield-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">أمن وحراسة</h3>
+                    <p class="text-gray-600 text-sm">حراسة 24 ساعة ونظام مراقبة</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section id="booking" class="py-20 booking-form">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-6 animate-fadeInUp">
+                    احجز وحدتك الآن
+                </h2>
+                <p class="text-gray-600 text-lg max-w-3xl mx-auto animate-fadeInUp" style="animation-delay: 0.2s;">
+                    املأ البيانات التالية وسنتواصل معك في أقرب وقت لحجز وحدتك المفضلة
+                </p>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white rounded-2xl shadow-2xl p-8 md:p-12 animate-fadeInUp" style="animation-delay: 0.3s;">
+                    <form class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-gray-700 text-sm font-bold mb-2">الاسم الكامل</label>
+                            <input type="text" name="full_name" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300" placeholder="اكتب اسمك الكامل">
+                        </div>
+
+                        <div>
+                            <label class="block text-gray-700 text-sm font-bold mb-2">رقم الهاتف</label>
+                            <input type="tel" name="phone" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300" placeholder="01xxxxxxxxx">
+                        </div>
+
+                        <div>
+                            <label class="block text-gray-700 text-sm font-bold mb-2">البريد الإلكتروني</label>
+                            <input type="email" name="email" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300" placeholder="example@email.com">
+                        </div>
+
+                        <div>
+                            <label class="block text-gray-700 text-sm font-bold mb-2">العمر</label>
+                            <input type="number" name="age" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300" placeholder="العمر">
+                        </div>
+
+                        <div>
+                            <label class="block text-gray-700 text-sm font-bold mb-2">نوع الوحدة المطلوبة</label>
+                            <select name="unit_type" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300">
+                                <option value="">اختر نوع الوحدة</option>
+                                <option value="apartment">شقة سكنية</option>
+                                <option value="duplex">دوبلكس</option>
+                                <option value="commercial">وحدة تجارية</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-gray-700 text-sm font-bold mb-2">الميزانية المتاحة</label>
+                            <select name="budget" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300">
+                                <option value="">اختر الميزانية</option>
+                                <option value="1-2m">1-2 مليون جنيه</option>
+                                <option value="2-3m">2-3 مليون جنيه</option>
+                                <option value="3-5m">3-5 مليون جنيه</option>
+                                <option value="5m+">أكثر من 5 مليون جنيه</option>
+                            </select>
+                        </div>
+
+                        <div class="md:col-span-2">
+                            <label class="block text-gray-700 text-sm font-bold mb-2">ملاحظات إضافية</label>
+                            <textarea name="notes" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 h-24" placeholder="اكتب أي ملاحظات أو متطلبات خاصة"></textarea>
+                        </div>
+
+                        <div class="md:col-span-2 text-center">
+                            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-12 rounded-full text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+                                <i class="fas fa-paper-plane ml-2"></i>
+                                إرسال طلب الحجز
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 contact-gradient text-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 animate-fadeInUp">
+                    تواصل معنا
+                </h2>
+                <p class="text-gray-300 text-lg max-w-3xl mx-auto animate-fadeInUp" style="animation-delay: 0.2s;">
+                    فريق القيادة والمبيعات في خدمتكم للرد على جميع استفساراتكم وتقديم المساعدة
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                <div class="animate-fadeInLeft">
+                    <h3 class="text-3xl font-bold mb-8">معلومات التواصل</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-center space-x-reverse space-x-4">
+                            <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
+                                <i class="fas fa-user text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">مدير المشروع</h4>
+                                <p class="text-gray-300">محمد نبيل حسنين</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-reverse space-x-4">
+                            <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
+                                <i class="fas fa-crown text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">المدير العام</h4>
+                                <p class="text-gray-300">علي عادل حسنين</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-reverse space-x-4">
+                            <div class="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center">
+                                <i class="fas fa-handshake text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">شريك في الإدارة</h4>
+                                <p class="text-gray-300">محمد عادل حسنين</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-reverse space-x-4">
+                            <div class="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center animate-pulse-slow">
+                                <i class="fas fa-phone text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">رقم الهاتف</h4>
+                                <p class="text-gray-300 text-xl font-bold">01093712126</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-reverse space-x-4">
+                            <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center">
+                                <i class="fas fa-map-marker-alt text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">الموقع</h4>
+                                <p class="text-gray-300">الإسكندرية، مصر</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-12">
+                        <h4 class="text-xl font-bold mb-4">اتصل بنا الآن</h4>
+                        <div class="flex flex-wrap gap-4">
+                            <a href="tel:01093712126" class="bg-green-500 hover:bg-green-600 px-6 py-3 rounded-full font-bold transition-all duration-300 transform hover:scale-105">
+                                <i class="fas fa-phone ml-2"></i>
+                                اتصال مباشر
+                            </a>
+                            <a href="https://wa.me/2001093712126?text=مرحباً، أنا مهتم بمشروع أبراج شاهين وأود الحصول على المزيد من المعلومات" target="_blank" class="bg-green-600 hover:bg-green-700 px-6 py-3 rounded-full font-bold transition-all duration-300 transform hover:scale-105">
+                                <i class="fab fa-whatsapp ml-2"></i>
+                                واتساب
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="animate-fadeInRight">
+                    <div class="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-2xl p-8">
+                        <h3 class="text-2xl font-bold mb-6">أرسل رسالة سريعة</h3>
+                        <form class="space-y-4">
+                            <input type="text" placeholder="الاسم" class="w-full px-4 py-3 rounded-lg bg-white bg-opacity-20 border border-white border-opacity-30 text-white placeholder-gray-300 focus:ring-2 focus:ring-blue-400 transition-all duration-300">
+                            <input type="tel" placeholder="رقم الهاتف" class="w-full px-4 py-3 rounded-lg bg-white bg-opacity-20 border border-white border-opacity-30 text-white placeholder-gray-300 focus:ring-2 focus:ring-blue-400 transition-all duration-300">
+                            <textarea placeholder="رسالتك" rows="4" class="w-full px-4 py-3 rounded-lg bg-white bg-opacity-20 border border-white border-opacity-30 text-white placeholder-gray-300 focus:ring-2 focus:ring-blue-400 transition-all duration-300 resize-none"></textarea>
+                            <button type="submit" class="w-full bg-yellow-400 hover:bg-yellow-500 text-blue-900 font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105">
+                                إرسال الرسالة
+                                <i class="fas fa-paper-plane mr-2"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4 text-center">
+            <div class="mb-8">
+                <h3 class="text-3xl font-bold mb-4">
+                    <i class="fas fa-building text-yellow-400 ml-2"></i>
+                    أبراج شاهين
+                </h3>
+                <p class="text-gray-400 max-w-2xl mx-auto mb-4">
+                    مشروع عقاري راقي في الإسكندرية يجمع بين الفخامة والراحة في موقع استراتيجي متميز
+                </p>
+                <p class="text-gray-500 text-sm">
+                    بقيادة: محمد نبيل حسنين • علي عادل حسنين • محمد عادل حسنين
+                </p>
+            </div>
+
+            <div class="border-t border-gray-700 pt-8">
+                <p class="text-gray-400 mb-2">
+                    جميع الحقوق محفوظة © 2025 أبراج شاهين - الإسكندرية
+                </p>
+                <p class="text-gray-500 text-sm">
+                    <i class="fas fa-code text-yellow-400 ml-1"></i>
+                    تم تصميم الموقع بواسطة Mohamed Nabil Hasanin • جميع الحقوق محفوظة 2025
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <div class="fixed bottom-6 left-6 z-50">
+        <a href="https://wa.me/2001093712126?text=مرحباً، أنا مهتم بمشروع أبراج شاهين وأود الحصول على المزيد من المعلومات" target="_blank" class="bg-green-500 hover:bg-green-600 w-16 h-16 rounded-full flex items-center justify-center shadow-2xl animate-bounce">
+            <i class="fab fa-whatsapp text-white text-2xl"></i>
+        </a>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-fadeInUp, .animate-fadeInLeft, .animate-fadeInRight').forEach(el => {
+            el.style.animationPlayState = 'paused';
+            observer.observe(el);
+        });
+
+        // Form submission
+        document.querySelector('#booking form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Collect form data
+            const formData = new FormData(this);
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+
+            // Show success message
+            alert('شكراً لك! تم إرسال طلب الحجز بنجاح. سنتواصل معك خلال 24 ساعة.');
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Quick contact form
+        document.querySelector('#contact form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('شكراً لك! تم إرسال رسالتك بنجاح. سنرد عليك في أقرب وقت.');
+            this.reset();
+        });
+
+        // Add some interactive effects
+        document.querySelectorAll('.card-hover').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Mobile menu toggle (basic implementation)
+        document.querySelector('.md\:hidden').addEventListener('click', function() {
+            const nav = document.querySelector('nav .hidden');
+            if (nav) {
+                nav.classList.toggle('hidden');
+                nav.classList.toggle('flex');
+            }
+        });
+    </script>
+</body>
+</html>
